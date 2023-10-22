@@ -13,7 +13,8 @@ var getData = async () => {
     .map((x) => x.symbol)
     .sort()
     .map((x) => `BINANCE:${x}`);
-  console.log(symbols);
+  
+  symbols.forEach(x => console.log(x));
 };
 getData();
 // console.log(response);
