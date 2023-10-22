@@ -1,4 +1,19 @@
 import fetch from "node-fetch";
 
-let response = fetch("https://www.binance.com/api/v3/exchangeInfo");
-console.log(response);
+var getData = async () => {
+  var response = await fetch("https://www.binance.com/api/v3/exchangeInfo");
+  let data = await response.json();
+  let symbols = data.symbols
+    .filter(
+      (x) =>
+        x.status == "TRADING" &&
+        (x.quoteAsset == "BUSD" || x.quoteAsset == "USDT"),
+    )
+    .filter((value, index, self) => self.map(x => x.baseAsset).indexOf(value.baseAsset) == index) 
+    .map((x) => x.symbol)
+    .sort()
+    .map((x) => `BINANCE:${x}`);
+  console.log(symbols);
+};
+getData();
+// console.log(response);
