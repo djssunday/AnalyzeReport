@@ -12,7 +12,7 @@ var getData = async () => {
     .filter((value, index, self) => self.map(x => x.baseAsset).indexOf(value.baseAsset) == index) 
     .map((x) => x.symbol)
     .sort()
-    .map((x) => `BINANCE:${x}`);
+    .map((x) => `BINANCE:${x}.P`);
   
   symbols.forEach(x => console.log(x));
 };
